@@ -21,7 +21,7 @@ def display_batches(dataset_name="hugosousa/ProfessorHeidelTime"):
     # Loop through the dataset in batches
     for i in range(0, total_items, batch_size):
         # Get the current batch
-        batch = data.[i:i + batch_size]
+        batch = data[i:i + batch_size]
 
         # Display the current batch
         print(f"\nDisplaying elements {i + 1} to {min(i + batch_size, total_items)}:")
