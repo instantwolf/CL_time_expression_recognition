@@ -1,8 +1,9 @@
 import datasets
 
+
 def display_batches(dataset_name="hugosousa/ProfessorHeidelTime"):
     """
-    Displays elements of a dataset in batches of 10, pausing for user input between batches.
+    Displays elements of a dataset in batches of 5, pausing for user input between batches.
     """
     print(f"Loading the dataset '{dataset_name}' from Hugging Face...")
 
