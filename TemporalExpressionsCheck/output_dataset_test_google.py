@@ -1,5 +1,4 @@
 import datasets
-
 """
 Note:
     Before trying to run/load the batches ensure that you have installed/updated your SSL certificates,
@@ -8,6 +7,9 @@ Note:
     Commands:
         python3 --version
         open /Applications/Python\ 3.x/Install\ Certificates.command
+        
+   Dataset rules explanation:
+    One of phrase matching ("Rule 1"), numeral matching ("Rule 2"), or open ended ("Rule 3"), as a string     
 """
 
 def display_batches(dataset_name="google-research-datasets/time_dial"):
@@ -34,17 +36,19 @@ def display_batches(dataset_name="google-research-datasets/time_dial"):
         batch = data[i:i + batch_size]
 
         # Display the current batch
+        """
         print(f"\nDisplaying elements {i + 1} to {min(i + batch_size, total_items)}:")
         for idx, item in enumerate(batch, start=i + 1):
             print(f"{idx}: {item}")
+        """
 
-        print(f"CONVERSATION: \n: {data[i]['conversation']} \n \n")
-        print(f"CORRECT1: \n {data[i]['correct1']} \n")
-        print(f"CORRECT2: \n {data[i]['correct2']} \n")
-        print(f"INCORRECT1: \n {data[i]['incorrect1']} \n")
-        print(f"INCORRECT1_RULE: \n {data[i]['incorrect1_rule']} \n")
-        print(f"INCORRECT2: \n {data[i]['incorrect2']} \n")
-        print(f"INCORRECT2_RULE: \n {data[i]['incorrect2_rule']} \n")
+        print(f"\nCONVERSATION: {data[i]['conversation']} \n ")
+        print(f"CORRECT1: {data[i]['correct1']}")
+        print(f"CORRECT2: {data[i]['correct2']}")
+        print(f"INCORRECT1: {data[i]['incorrect1']}")
+        #print(f"INCORRECT1_RULE: \n {data[i]['incorrect1_rule']} \n")
+        print(f"INCORRECT2: {data[i]['incorrect2']}")
+        #print(f"INCORRECT2_RULE: \n {data[i]['incorrect2_rule']} \n")
 
         # Wait for user input to continue
         if i + batch_size < total_items:
