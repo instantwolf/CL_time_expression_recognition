@@ -8,7 +8,7 @@ class ComparisonInstance:
             self.truth = set(solution_list)  # Ground truth
             self.prediction = set(prediction_list)  # Predicted collection
 
-            self.result =
+            self.result = self.eval_instance();
 
         #truth and prediction are equal
         def positive(self):
@@ -26,6 +26,20 @@ class ComparisonInstance:
             return not self.positive() and not self.false_negative() and not self.false_positive()
 
 
-        @staticmethod
         def eval_instance(self):
-            
+            if self.positive():
+                return 'P'
+            elif self.false_positive():
+                return 'FP'
+            elif self.false_negative():
+                return 'FN'
+            elif self.negative():
+                return 'N'
+            else:
+                return 'O'
+
+        def __repr__(self):
+            """String representation of the Instance object."""
+            return f"\n Instance: truth: {self.truth} \n prediction: {self.prediction} \n res: {self.result}"
+
+
