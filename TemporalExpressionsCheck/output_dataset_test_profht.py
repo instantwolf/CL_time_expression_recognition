@@ -33,8 +33,9 @@ def display_batch_pht(data, start_i= 0, items_to_read = 100):
             print(f"{idx}: {item}")
         """
 
-        print(f"TEXT: \n: {data[i]['text']} \n \n")
-        print(f"Timexs: \n {data[i]['timexs']} \n")
+        print(f"TEXT: {data[i]['text']} \n")
+        print(f"DCT: {data[i]['dct']} \n")
+        print(f"Timexs: {data[i]['timexs']} \n")
 
         # Wait for user input to continue
         if i < total_items-1:
