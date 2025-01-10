@@ -6,19 +6,23 @@ functions:
     print_result(): handles printing the result provided by the OpenAI API.
 """
 import openai_api
+from output_dataset_test_profht import load_dataset_pht
 
 
 def perform_analysis():
     """
     Collects the datasets from external sources and giving it to the OpenAI API for further processing.
     """
-    # datasets which will be analyzed
-    data = ""  # TODO: implementation of providing the data from external sources
+    # datasets from ProfessorHeidelTime which will be analyzed
+    data = load_dataset_pht()
 
-    # conduct the processing via OpenAI API
-    result = openai_api.extract_datetime_from_text(data)
+    for i in range(5):  # TODO: add functionality to handle the complete dataset processing
+        # conduct the processing via OpenAI API
+        result = openai_api.extract_datetime_from_text(data[i]['text'])
 
-    print_result(result)
+        print_result(result)
+
+    # TODO: further processing of the results
 
 
 def print_result(result):
