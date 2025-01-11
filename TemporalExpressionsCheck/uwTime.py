@@ -48,15 +48,25 @@ def convert_server_response_to_timex(timex_tag):
     return timex_object
 
 def get_timex_tags(response):
-    tags = ET.fromstring(response.json()["timeml"])
-    timexes = tags.findall(".//TIMEX3")
-    filtered_times = timexes[min(1,len(timexes)):len(timexes)]
-    timex_objects = []
 
-    for timex in filtered_times:
-        timexobj = convert_server_response_to_timex(timex)
-        timex_objects.append(timexobj)
-    return timex_objects
+    response_json = response.json()
+    if "timeml" not in response_json:
+        print("The 'timeml' key is missing in the response.")
+        return []
+    else:
+        try:
+            tags = ET.fromstring(response.json()["timeml"])
+            timexes = tags.findall(".//TIMEX3")
+            filtered_times = timexes[min(1,len(timexes)):len(timexes)]
+            timex_objects = []
+
+            for timex in filtered_times:
+                timexobj = convert_server_response_to_timex(timex)
+                timex_objects.append(timexobj)
+        except Exception as e:
+            print(f"An error occurred while processing the XML: {e}")
+            timex_objects = []
+        return timex_objects
 
 def output_timexs(response):
     timexes = get_timex_tags(response)
@@ -88,7 +98,7 @@ def convert_source_to_timex(timexdata):
 
 if __name__ == "__main__":
     data = loaddata()
-    batch_size = 100
+    batch_size = 10
 
     batch = data[0:batch_size]
     collection = InstanceCollection()
@@ -97,13 +107,14 @@ if __name__ == "__main__":
         date = extract_date_portion(data["dct"][i])
        # Domain(newswire | narrative | other)
         response = query_parse_server(data["text"][i],date,"newswire")
-        timexresponse = get_timex_tags(response)
-        timexsolution = get_timex_tags_from_source(batch,i)
-
-        i = ComparisonInstance(timexsolution, timexresponse)
-        collection.addinstance(i)
-
-        print(i)
+        if(response.status_code != 200):
+            continue
+        else:
+            timexresponse = get_timex_tags(response)
+            timexsolution = get_timex_tags_from_source(batch,i)
+            i = ComparisonInstance(timexsolution, timexresponse)
+            collection.addinstance(i)
+            print(i)
 
     print(f"Evaluation done. Calculating statistics.")
     print(f"Precision: {collection.precision()}")
