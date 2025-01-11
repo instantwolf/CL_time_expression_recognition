@@ -116,7 +116,4 @@ if __name__ == "__main__":
             collection.addinstance(i)
             print(i)
 
-    print(f"Evaluation done. Calculating statistics.")
-    print(f"Precision: {collection.precision()}")
-    print(f"F-Score: {collection.f1()}")
-    print(f"Recall: {collection.recall()}")
+    collection.print_stats()

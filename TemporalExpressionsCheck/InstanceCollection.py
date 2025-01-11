@@ -13,17 +13,36 @@ class InstanceCollection:
     def tp(self):
         return sum(1 for instance in self.instances if instance.result == 'P')  # True Positives
 
+    def tn(self):
+        return sum(1 for instance in self.instances if instance.result == 'N')  # True Positives
+
     def fp(self):
         return sum(1 for instance in self.instances if instance.result == 'FP')  # False Positives
 
     def fn(self):
         return sum(1 for instance in self.instances if instance.result == 'FN')  # False Negatives
 
+    def accuracy(self):
+        denom = (self.tp() + self.tn() + self.fp() + self.fn())
+        return (self.tp() + self.tn()) / denom if denom > 0 else 0
+
     def precision(self):
-        return self.tp() / (self.tp() + self.fp()) if (self.tp() + self.tp()) > 0 else 0
+        denom = (self.tp() + self.fp())
+        return self.tp() / denom if denom > 0 else 0
 
     def recall(self):
-        return self.tp() / (self.tp() + self.fn()) if (self.tp() + self.fn()) > 0 else 0
+        denom = (self.tp() + self.fn())
+        return self.tp() / denom if denom > 0 else 0
 
     def f1(self):
-        return (2 * self.precision() * self.recall()) / (self.precision() + self.recall()) if (self.precision() + self.recall()) > 0 else 0
+        prec = self.precision()
+        rec = self.recall()
+        denom = prec + rec
+        return (2 * prec * rec) / denom if denom > 0 else 0
+
+    def print_stats(self):
+        print(f"Evaluation done. Calculating statistics.")
+        print(f"Precision: {self.precision()}")
+        print(f"F-Score: {self.f1()}")
+        print(f"Recall: {self.recall()}")
+        print(f"Accuracy: {self.accuracy()}")
