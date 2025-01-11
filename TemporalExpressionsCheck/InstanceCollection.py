@@ -41,7 +41,8 @@ class InstanceCollection:
         return (2 * prec * rec) / denom if denom > 0 else 0
 
     def print_stats(self):
-        print(f"Evaluation done. Calculating statistics.")
+        print(f"Calculating statistics for instance set")
+        print(f"Amount of instances tested: #{len(self.instances)} ")
         print(f"Precision: {self.precision()}")
         print(f"F-Score: {self.f1()}")
         print(f"Recall: {self.recall()}")

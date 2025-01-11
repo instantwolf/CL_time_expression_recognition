@@ -22,4 +22,21 @@ The data was used to compare the performance between UWTime and ChatGPT in tempo
 
 
 
+#How to use 
+
+##UWTime Testing
+
+Clone UWTime repo (https://bitbucket.org/kentonl/uwtime-standalone/src/master/) to any folder
+Open Project in InteliJ and run src/main/edu/uw/cs/lil/uwtime/TemporalMain.java or build jar file and execute.
+Verify that the server is running at predefined port (10001). 
+If you change the port, you need to adapt the python script uwtime.py and set the port to the same deviating number.
+
+Once the server is up and running , run uwtime.py , it´ll automatically fetch the heideltime dataset (https://huggingface.co/datasets/hugosousa/ProfessorHeidelTime) from huggingface and test instance by instance. 
+
+###batch size
+The predefined batch size is 10 (since the process takes a while to complete)
+If you wish, you might set batch size to 100 or even 1000 or higher. 
+
+
+
 
