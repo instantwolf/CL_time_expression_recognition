@@ -12,11 +12,14 @@ The textfile is chronologically sorted, where each message is represented as an 
 Example: 17.03.24, 17:05 - Cathrin Dbtech Schachner: ah moment
 
 
-The chat-files needed to be pre-filtered, filerted, transformed and then labelled accordingly.
+### Update to gathering method
 
-Prefiltering is done semi-automatically, where certain types of messages (e.g. those messages that consist only of media, urls etc.).
+A predefined dataset (Professor Heideltime:german -training) has been used to test temporal tagging.
 
-Filtering is done manually to avoid biasing the dataset towards expressions that the data is filtered with. 
+### Comparison
+
+The data was used to compare the performance between UWTime and ChatGPT in temporal tagging. 
+
 
 
 
