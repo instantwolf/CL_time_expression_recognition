@@ -2,10 +2,9 @@
 This module is responsible for sending the data and receiving the datetime data to and from the OpenAI API.
 
 functions:
-    extract_datetime_from_text(input_data): handles the requests / responses from the OpenAI API.
+    extract_datetime_from_text(input_data): Handles the requests / responses from the OpenAI API.
 """
 from openai import OpenAI
-from datetime import datetime
 import api_key
 
 # set your API Key to enable requests
