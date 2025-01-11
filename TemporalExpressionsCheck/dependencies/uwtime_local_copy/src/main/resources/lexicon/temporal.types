@@ -1,0 +1,9 @@
+(
+// the types file. Contains info on what types the constants can take. 
+(n e)	// number
+(s e)	// sequence
+(r s)   // range
+(d e)	// duration
+(a e)	// approximate reference
+(q e)   // quantifier
+)

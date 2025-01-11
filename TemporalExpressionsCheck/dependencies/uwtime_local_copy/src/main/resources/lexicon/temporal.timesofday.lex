@@ -1,0 +1,8 @@
+night :- N : (nth:<n,<s,s>> 4:n timeofday:s)
+evening :- N : (nth:<n,<s,s>> 3:n timeofday:s)
+afternoon :- N : (nth:<n,<s,s>> 2:n timeofday:s)
+morning :- N : (nth:<n,<s,s>> 1:n timeofday:s)
+nights :- N : (every:<s,s> (nth:<n,<s,s>> 4:n timeofday:s))
+evenings :- N : (every:<s,s> (nth:<n,<s,s>> 3:n timeofday:s))
+afternoons :- N : (every:<s,s> (nth:<n,<s,s>> 2:n timeofday:s))
+mornings :- N : (every:<s,s> (nth:<n,<s,s>> 1:n timeofday:s))
