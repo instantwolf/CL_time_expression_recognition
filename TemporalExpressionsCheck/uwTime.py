@@ -100,6 +100,7 @@ if __name__ == "__main__":
 
         i = ComparisonInstance(timexsolution, timexresponse)
 
+
         print(i)
 
         ##check server response
