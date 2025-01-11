@@ -9,6 +9,7 @@ from dateutil.parser import parse
 import xml.etree.ElementTree as ET
 
 from ComparisonInstance import ComparisonInstance
+from InstanceCollection import InstanceCollection
 from output_dataset_test_profht import load_dataset_pht
 from timex import Timex
 
@@ -87,9 +88,10 @@ def convert_source_to_timex(timexdata):
 
 if __name__ == "__main__":
     data = loaddata()
-    batch_size = 1000
+    batch_size = 100
 
     batch = data[0:batch_size]
+    collection = InstanceCollection()
 
     for i in range(0, batch_size):
         date = extract_date_portion(data["dct"][i])
@@ -99,8 +101,11 @@ if __name__ == "__main__":
         timexsolution = get_timex_tags_from_source(batch,i)
 
         i = ComparisonInstance(timexsolution, timexresponse)
-
+        collection.addinstance(i)
 
         print(i)
 
-        ##check server response
+    print(f"Evaluation done. Calculating statistics.")
+    print(f"Precision: {collection.precision()}")
+    print(f"F-Score: {collection.f1()}")
+    print(f"Recall: {collection.recall()}")

@@ -1,6 +1,5 @@
 from ComparisonInstance import ComparisonInstance
 
-
 class InstanceCollection:
     def __init__(self):
         self.instances = set()
