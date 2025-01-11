@@ -26,7 +26,7 @@ The data was used to compare the performance between UWTime and ChatGPT in tempo
 
 ##UWTime Testing
 
-Clone UWTime repo (https://bitbucket.org/kentonl/uwtime-standalone/src/master/) to any folder
+Clone UWTime repo (https://bitbucket.org/kentonl/uwtime-standalone/src/master/) to any folder or just use the local forc (dependencies/localcopy_uwtime) of the repository.
 Open Project in InteliJ and run src/main/edu/uw/cs/lil/uwtime/TemporalMain.java or build jar file and execute.
 Verify that the server is running at predefined port (10001). 
 If you change the port, you need to adapt the python script uwtime.py and set the port to the same deviating number.
