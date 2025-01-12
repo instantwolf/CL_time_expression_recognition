@@ -108,7 +108,7 @@ if __name__ == "__main__":
         date = extract_date_portion(data["dct"][i])
        # Domain(newswire | narrative | other)
         response = query_parse_server(data["text"][i],date,"newswire")
-        if(response == False and response.status_code != 200):
+        if response == False or response.status_code != 200:
             continue
         else:
             timexresponse = get_timex_tags(response)
