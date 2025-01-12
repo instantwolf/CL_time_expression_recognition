@@ -24,7 +24,8 @@ def query_parse_server(text, dct, domain):
     if r.status_code == requests.codes.ok:
         return r
     else:
-        r.raise_for_status()
+       # r.raise_for_status()
+        return False
 
 
 def loaddata():
@@ -98,7 +99,7 @@ def convert_source_to_timex(timexdata):
 
 if __name__ == "__main__":
     data = loaddata()
-    batch_size = 10
+    batch_size = 1000
 
     batch = data[0:batch_size]
     collection = InstanceCollection()
@@ -107,7 +108,7 @@ if __name__ == "__main__":
         date = extract_date_portion(data["dct"][i])
        # Domain(newswire | narrative | other)
         response = query_parse_server(data["text"][i],date,"newswire")
-        if(response.status_code != 200):
+        if(response == False and response.status_code != 200):
             continue
         else:
             timexresponse = get_timex_tags(response)
@@ -115,5 +116,8 @@ if __name__ == "__main__":
             i = ComparisonInstance(timexsolution, timexresponse)
             collection.addinstance(i)
             print(i)
+            print(f"==============\n UWTime Stats \n==============")
+            collection.print_stats()
 
+    print(f"==============\n UWTime Stats \n==============")
     collection.print_stats()
