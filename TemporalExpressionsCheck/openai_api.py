@@ -13,7 +13,8 @@ functions:
 """
 from openai import OpenAI
 import api_key
-from TemporalExpressionsCheck.ComparisonInstance import ComparisonInstance
+from ComparisonInstance import ComparisonInstance
+from InstanceCollection import InstanceCollection
 from TemporalExpressionsCheck.timex import Timex
 from output_dataset_test_profht import load_dataset_pht
 import xml.etree.ElementTree as ET
@@ -34,6 +35,8 @@ def perform_comparison():
     Performs the comparison of the evaluated timex3 tags from ChatGPT/OpenAI API with the timex3 tags from
     the source.
     """
+    collection = InstanceCollection()
+
     data = load_data()
     batch_size = 5  # len(data) - 1
 
@@ -49,8 +52,11 @@ def perform_comparison():
 
         # comparing source and predicted timex3 tags with one another
         result = ComparisonInstance(timex_solution, timex_response)
+        collection.addinstance(result)
 
         print(result)
+
+    collection.print_stats()
 
 
 def extract_datetime_from_text(input_data):
